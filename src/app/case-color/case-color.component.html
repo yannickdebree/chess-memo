@@ -1,4 +1,10 @@
-<p *ngIf="error">{{error}}</p>
-<h1>De quelle couleur est la case {{currentCase?.toString()}} ?</h1>
-<button (click)="onSubmit(false)">Blanche</button>
-<button (click)="onSubmit(true)">Noire</button>
+<div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
+    <h1>Couleur de case</h1>
+    <span></span>
+</div>
+<h2>De quelle couleur est la case {{currentCase?.toString()}} ?</h2>
+<div fxLayout="column" fxLayoutGap="1rem">
+    <button mat-raised-button color="accent" (click)="onSubmit(false)">Blanche</button>
+    <button mat-raised-button color="basic" (click)="onSubmit(true)">Noire</button>
+</div>

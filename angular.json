@@ -119,9 +119,26 @@
             "firebaseProject": "chess-memo-70600",
             "firebaseHostingSite": "chess-memo-70600"
           }
+        },
+        "lint": {
+          "builder": "@angular-eslint/builder:lint",
+          "options": {
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
+          }
         }
       }
     }
   },
-  "defaultProject": "chess-memo"
+  "schematics": {
+    "@schematics/angular:component": {
+      "changeDetection": "OnPush"
+    }
+  },
+  "defaultProject": "chess-memo",
+  "cli": {
+    "defaultCollection": "@angular-eslint/schematics"
+  }
 }
