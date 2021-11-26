@@ -107,6 +107,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "chess-memo:build:production",
+            "firebaseProject": "chess-memo-70600",
+            "firebaseHostingSite": "chess-memo-70600"
+          }
         }
       }
     }

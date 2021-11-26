@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "chess-memo-70600": {
+      "hosting": {
+        "chess-memo": [
+          "chess-memo-70600"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "chess-memo-70600"
+  }
+}
