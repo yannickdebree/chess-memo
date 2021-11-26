@@ -1,0 +1,4 @@
+<p *ngIf="error">{{error}}</p>
+<h1>De quelle couleur est la case {{currentCase?.toString()}} ?</h1>
+<button (click)="onSubmit(false)">Blanche</button>
+<button (click)="onSubmit(true)">Noire</button>
