@@ -7,4 +7,5 @@
 <div fxLayout="column" fxLayoutGap="1rem">
     <button mat-raised-button color="accent" (click)="onSubmit(false)">Blanche</button>
     <button mat-raised-button color="basic" (click)="onSubmit(true)">Noire</button>
+    <div *ngIf="chrono">Temps: <b [chronometer]="chronometer" [chronoEvents]=true (onChronoEvent)="onChronoEvent($event)"></b></div>
 </div>

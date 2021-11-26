@@ -1,21 +1,38 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { Router } from '@angular/router';
-import { Board, Case } from '../domain';
-import { MatSnackBar } from '@angular/material/snack-bar'
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Chronometer, StatusChonometer } from 'ngx-chronometer';
+import { Board, Case, Score } from '../domain';
+import { CaseColorRecapComponent } from './case-color-recap.component';
+
 
 @Component({
   selector: 'app-case-color',
   templateUrl: './case-color.component.html',
   styleUrls: ['./case-color.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class CaseColorComponent {
+export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
+  private limitSecond = 300;
+  private score = new Score();
 
   currentCase: Case | undefined;
+  chrono: boolean | undefined;
+  chronometer = new Chronometer({
+    limitSecond: this.limitSecond,
+    status: StatusChonometer.start
+  });
 
-  constructor(private router: Router, private matSnackBar: MatSnackBar) {
+  constructor(private router: Router, private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef, private matDialog: MatDialog) {
     this.selectRandomCase();
+  }
+
+  ngOnInit() {
+    this.activatedRoute.queryParams.subscribe(({ chrono }) => {
+      this.chrono = chrono === "true" ? true : false;
+    });
   }
 
   selectRandomCase() {
@@ -27,14 +44,28 @@ export class CaseColorComponent {
     this.matSnackBar.dismiss();
 
     if (this.currentCase?.getColor() !== answer) {
+      this.score.registerFail();
       this.matSnackBar.open(
         `${this.currentCase?.toString()} est de couleur ${answer ? 'blanche' : 'noire'}.`, 'OK', { duration: 2000 }
       );
+    } else {
+      this.score.registerSuccess();
     }
+
     this.selectRandomCase();
   }
 
   onNavigationBefore() {
     this.router.navigate(['..']);
+  }
+
+  onChronoEvent(chronometer: Chronometer) {
+    this.changeDetectorRef.markForCheck();
+
+    if (chronometer.second === this.limitSecond && chronometer.status !== StatusChonometer.pause) {
+      this.chronometer.pause();
+      this.changeDetectorRef.markForCheck();
+      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { score: this.score } });
+    }
   }
 }
