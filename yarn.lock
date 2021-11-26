@@ -249,6 +249,13 @@
     tslib "^2.0.0"
     winston "^3.0.0"
 
+"@angular/flex-layout@^12.0.0-beta.35":
+  version "12.0.0-beta.35"
+  resolved "https://registry.yarnpkg.com/@angular/flex-layout/-/flex-layout-12.0.0-beta.35.tgz#b52c3c82608cbb92a119f8dcde2a5b98186fe558"
+  integrity sha512-nPi2MGDFuCacwWHqxF/G7lUJd2X99HbLjjUvKXnyLwyCIVgH1sfS52su2wYbVYWJRqAVAB2/VMlrtW8Khr8hDA==
+  dependencies:
+    tslib "^2.1.0"
+
 "@angular/forms@~12.1.0-":
   version "12.1.5"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-12.1.5.tgz#c7ca72934e7a3ec22a2f6a9c50480bb71375b2bf"
