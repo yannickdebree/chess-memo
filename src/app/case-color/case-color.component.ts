@@ -6,6 +6,7 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
 import { Board, Case, Tracking } from '../domain';
+import { CaseColorTrackingRepositoryService } from '../services';
 import { CaseColorRecapComponent } from './components';
 
 @UntilDestroy()
@@ -16,7 +17,7 @@ import { CaseColorRecapComponent } from './components';
 export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
-  private limitSecond = 300;
+  private limitSecond = 60;
   private tracking = new Tracking();
 
   currentCase: Case | undefined;
@@ -26,7 +27,7 @@ export class CaseColorComponent implements OnInit {
     status: StatusChonometer.start
   });
 
-  constructor(private router: Router, private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef, private matDialog: MatDialog) {
+  constructor(private router: Router, private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef, private matDialog: MatDialog, private caseColorTrackingRepositoryService: CaseColorTrackingRepositoryService) {
     this.selectRandomCase();
   }
 
@@ -68,6 +69,7 @@ export class CaseColorComponent implements OnInit {
 
     if (chronometer.second === this.limitSecond && chronometer.status !== StatusChonometer.pause) {
       this.chronometer.pause();
+      this.caseColorTrackingRepositoryService.saveTracking(this.tracking)
       this.changeDetectorRef.markForCheck();
       this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } }).afterClosed().pipe(first()).subscribe(retry => {
         if (retry) {

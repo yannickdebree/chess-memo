@@ -136,6 +136,9 @@
     "@schematics/angular:component": {
       "changeDetection": "OnPush",
       "skipTests": true
+    },
+    "@schematics/angular:service": {
+      "skipTests": true
     }
   },
   "defaultProject": "chess-memo",
