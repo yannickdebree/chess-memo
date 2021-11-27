@@ -6,11 +6,10 @@ import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
 import { Board, Case, Tracking } from '../domain';
-import { CaseColorRecapComponent } from './case-color-recap.component';
+import { CaseColorRecapComponent } from './components';
 
 @UntilDestroy()
-@Component({
-  selector: 'app-case-color',
+  @Component({
   templateUrl: './case-color.component.html',
   styleUrls: ['./case-color.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush
 })
@@ -45,7 +44,7 @@ export class CaseColorComponent implements OnInit {
   onSubmit(answer: boolean) {
     this.matSnackBar.dismiss();
 
-    if (!!this.currentCase) {
+    if (!!this.currentCase && this.chrono) {
       const isBlack = this.currentCase.getIsBlack();
       if (isBlack !== answer) {
         this.tracking.registerData(this.currentCase, false);
@@ -73,6 +72,7 @@ export class CaseColorComponent implements OnInit {
       this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } }).afterClosed().pipe(first()).subscribe(retry => {
         if (retry) {
           this.chronometer.restart();
+          this.tracking = new Tracking();
         } else {
           this.onNavigationBefore();
         }

@@ -1,9 +1,9 @@
-import { Component, Inject } from "@angular/core";
+import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Tracking } from "../domain";
+import { Tracking } from "../../../domain";
 
 @Component({
-    templateUrl: './case-color-recap.component.html'
+    templateUrl: './case-color-recap.component.html', changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CaseColorRecapComponent {
     success: number;

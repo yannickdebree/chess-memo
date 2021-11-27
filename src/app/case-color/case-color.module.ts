@@ -6,9 +6,9 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatIconModule } from '@angular/material/icon';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { NgxChronometerModule } from 'ngx-chronometer';
-import { CaseColorRecapComponent } from './case-color-recap.component';
 import { CaseColorRoutingModule } from './case-color-routing.module';
 import { CaseColorComponent } from './case-color.component';
+import { CaseColorRecapComponent } from './components';
 
 @NgModule({
   declarations: [
