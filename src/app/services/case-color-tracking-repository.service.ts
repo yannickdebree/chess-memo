@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Tracking, TrackingRepository } from '../domain';
+import { Tracking, TrackingRepository } from '@_domain';
 
 @Injectable({
   providedIn: 'root'

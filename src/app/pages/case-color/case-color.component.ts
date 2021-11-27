@@ -3,14 +3,14 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { Board, Case, Tracking } from '@_domain';
+import { CaseColorTrackingRepositoryService } from '@_services';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
-import { Board, Case, Tracking } from '../domain';
-import { CaseColorTrackingRepositoryService } from '../services';
 import { CaseColorRecapComponent } from './components';
 
 @UntilDestroy()
-  @Component({
+@Component({
   templateUrl: './case-color.component.html',
   styleUrls: ['./case-color.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush
 })

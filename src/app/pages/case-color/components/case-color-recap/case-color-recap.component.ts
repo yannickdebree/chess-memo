@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Inject } from "@angular/core";
 import { MAT_DIALOG_DATA } from "@angular/material/dialog";
-import { Tracking } from "../../../domain";
+import { Tracking } from "@_domain";
 
 @Component({
     templateUrl: './case-color-recap.component.html', changeDetection: ChangeDetectionStrategy.OnPush

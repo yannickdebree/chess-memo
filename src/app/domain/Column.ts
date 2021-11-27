@@ -1,9 +1,7 @@
 export class Column {
-    private value: number;
+    private value = ['A', 'C', 'E', 'G'].includes(this.letter) ? 1 : -1;
 
-    constructor(private letter: string) {
-        this.value = ['A', 'C', 'E', 'G'].includes(letter) ? 1 : -1;
-    }
+    constructor(private letter: string) { }
 
     getLetter() {
         return this.letter;

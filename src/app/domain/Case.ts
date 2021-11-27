@@ -1,5 +1,4 @@
-import { Row } from ".";
-import { Column } from "./Column";
+import { Column, Row } from ".";
 
 export class Case {
     private isBlack: boolean;
