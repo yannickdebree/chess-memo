@@ -3,7 +3,8 @@ import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
   { path: '', loadChildren: () => import('./pages').then(m => m.HomepageModule) },
-  { path: 'case-color', loadChildren: () => import('./pages').then(m => m.CaseColorModule) }
+  { path: 'case-color', loadChildren: () => import('./pages').then(m => m.CaseColorModule) },
+  { path: 'stats', loadChildren: () => import('./pages').then(m => m.StatsModule) }
 ];
 
 @NgModule({

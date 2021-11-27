@@ -5,7 +5,13 @@ import { Tracking, TrackingRepository } from '@_domain';
   providedIn: 'root'
 })
 export class CaseColorTrackingRepositoryService implements TrackingRepository {
+  private data = new Array<Tracking>();
+
+  getTrackings() {
+    return this.data;
+  }
+
   saveTracking(tracking: Tracking) {
-    console.log(tracking);
+    this.data.push(tracking);
   }
 }
