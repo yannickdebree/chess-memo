@@ -2,11 +2,13 @@ import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
+import { first } from 'rxjs/operators';
 import { Board, Case, Score } from '../domain';
 import { CaseColorRecapComponent } from './case-color-recap.component';
 
-
+@UntilDestroy()
 @Component({
   selector: 'app-case-color',
   templateUrl: './case-color.component.html',
@@ -30,7 +32,7 @@ export class CaseColorComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.activatedRoute.queryParams.subscribe(({ chrono }) => {
+    this.activatedRoute.queryParams.pipe(untilDestroyed(this)).subscribe(({ chrono }) => {
       this.chrono = chrono === "true" ? true : false;
     });
   }
@@ -65,7 +67,13 @@ export class CaseColorComponent implements OnInit {
     if (chronometer.second === this.limitSecond && chronometer.status !== StatusChonometer.pause) {
       this.chronometer.pause();
       this.changeDetectorRef.markForCheck();
-      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { score: this.score } });
+      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { score: this.score } }).afterClosed().pipe(first()).subscribe(retry => {
+        if (retry) {
+          this.chronometer.restart();
+        } else {
+          this.onNavigationBefore();
+        }
+      })
     }
   }
 }
