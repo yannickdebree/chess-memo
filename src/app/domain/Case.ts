@@ -1,19 +1,19 @@
-export class Case {
-    private color: boolean;
+import { Row } from ".";
+import { Column } from "./Column";
 
-    constructor(private column: string, private row: number) {
-        if (['A', 'C', 'E', 'G'].includes(column) && [2, 4, 6, 8].includes(row)) {
-            this.color = false;
-        } else {
-            this.color = true;
-        }
+export class Case {
+    private isBlack: boolean;
+
+    constructor(private column: Column, private row: Row) {
+        const value = column.getValue() + row.getValue();
+        this.isBlack = value === 2 || value === -2;
     }
 
-    getColor() {
-        return this.color;
+    getIsBlack() {
+        return this.isBlack;
     }
 
     toString() {
-        return `${this.column}${this.row}`
+        return `${this.column.getLetter()}${this.row.getIndex()}`
     }
 }

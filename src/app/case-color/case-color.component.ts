@@ -5,7 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
-import { Board, Case, Score } from '../domain';
+import { Board, Case, Tracking } from '../domain';
 import { CaseColorRecapComponent } from './case-color-recap.component';
 
 @UntilDestroy()
@@ -17,8 +17,8 @@ import { CaseColorRecapComponent } from './case-color-recap.component';
 export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
-  private limitSecond = 300;
-  private score = new Score();
+  private limitSecond = 3;
+  private tracking = new Tracking();
 
   currentCase: Case | undefined;
   chrono: boolean | undefined;
@@ -45,13 +45,16 @@ export class CaseColorComponent implements OnInit {
   onSubmit(answer: boolean) {
     this.matSnackBar.dismiss();
 
-    if (this.currentCase?.getColor() !== answer) {
-      this.score.registerFail();
-      this.matSnackBar.open(
-        `${this.currentCase?.toString()} est de couleur ${answer ? 'blanche' : 'noire'}.`, 'OK', { duration: 2000 }
-      );
-    } else {
-      this.score.registerSuccess();
+    if (!!this.currentCase) {
+      const isBlack = this.currentCase.getIsBlack();
+      if (isBlack !== answer) {
+        this.tracking.registerData(this.currentCase, false);
+        this.matSnackBar.open(
+          `${this.currentCase.toString()} est de couleur ${isBlack ? 'noire' : 'blanche'}.`, 'OK', { duration: 2000 }
+        );
+      } else {
+        this.tracking.registerData(this.currentCase);
+      }
     }
 
     this.selectRandomCase();
@@ -67,7 +70,7 @@ export class CaseColorComponent implements OnInit {
     if (chronometer.second === this.limitSecond && chronometer.status !== StatusChonometer.pause) {
       this.chronometer.pause();
       this.changeDetectorRef.markForCheck();
-      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { score: this.score } }).afterClosed().pipe(first()).subscribe(retry => {
+      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } }).afterClosed().pipe(first()).subscribe(retry => {
         if (retry) {
           this.chronometer.restart();
         } else {

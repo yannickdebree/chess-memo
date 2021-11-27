@@ -1,3 +1,6 @@
 export * from './Board';
 export * from './Case';
-export * from './Score';
+export * from './Column';
+export * from './Row';
+export * from './Tracking';
+

@@ -1,9 +1,13 @@
 <h1>Score :</h1>
 
-<p>Succès : {{ data.score.getSuccess() }}</p>
-<p>Echecs : {{ data.score.getFails() }}</p>
+<p>Succès : {{ success }}</p>
+<p>Echecs : {{ fails }}</p>
 
 <div fxLayout="row" fxLayoutGap="1rem">
-    <button mat-raised-button color="primary" [mat-dialog-close]="true" >Réessayer</button>
-    <button mat-raised-button color="basic" [mat-dialog-close]="false">Retour à l'accueil</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    Réessayer
+  </button>
+  <button mat-raised-button color="basic" [mat-dialog-close]="false">
+    Retour à l'accueil
+  </button>
 </div>
