@@ -17,7 +17,7 @@ import { CaseColorRecapComponent } from './case-color-recap.component';
 export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
-  private limitSecond = 3;
+  private limitSecond = 300;
   private tracking = new Tracking();
 
   currentCase: Case | undefined;
