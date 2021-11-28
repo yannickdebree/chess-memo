@@ -1,2 +1,12 @@
-<h1>Statistiques</h1>
-<h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
+<div fxLayout="column" class="container">
+  <div fxLayout="row" fxLayoutAlign="space-between">
+    <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
+    <h1>Statistiques</h1>
+    <span></span>
+  </div>
+  <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
+  <div #canvasContainer class="canvas-container">
+    <canvas #canvas></canvas>
+  </div>
+  <button mat-raised-button (click)="onDropStatistics()">Supprimer les statistiques</button>
+</div>

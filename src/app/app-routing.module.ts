@@ -2,9 +2,9 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 const routes: Routes = [
-  { path: '', loadChildren: () => import('./pages').then(m => m.HomepageModule) },
-  { path: 'case-color', loadChildren: () => import('./pages').then(m => m.CaseColorModule) },
-  { path: 'stats', loadChildren: () => import('./pages').then(m => m.StatsModule) }
+  { path: '', loadChildren: () => import('@_pages').then(m => m.HomepageModule) },
+  { path: 'case-color', loadChildren: () => import('@_pages').then(m => m.CaseColorModule) },
+  { path: 'stats', loadChildren: () => import('@_pages').then(m => m.StatsModule) }
 ];
 
 @NgModule({

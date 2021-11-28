@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
-import { Board, Case, Tracking } from '@_domain';
+import { Board, Case, Tracking, TrackingData } from '@_domain';
 import { CaseColorTrackingRepositoryService } from '@_services';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { CaseColorRecapComponent } from './components';
 export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
-  private limitSecond = 60;
+  private limitSecond = 3;
   private tracking = new Tracking();
 
   currentCase: Case | undefined;
@@ -46,15 +46,15 @@ export class CaseColorComponent implements OnInit {
     this.matSnackBar.dismiss();
 
     if (!!this.currentCase && this.chrono) {
+      const trackingData = new TrackingData(this.currentCase);
       const isBlack = this.currentCase.getIsBlack();
       if (isBlack !== answer) {
-        this.tracking.registerData(this.currentCase, false);
+        trackingData.setSuccess(false);
         this.matSnackBar.open(
           `${this.currentCase.toString()} est de couleur ${isBlack ? 'noire' : 'blanche'}.`, 'OK', { duration: 2000 }
         );
-      } else {
-        this.tracking.registerData(this.currentCase);
       }
+      this.tracking.registerData(trackingData);
     }
 
     this.selectRandomCase();

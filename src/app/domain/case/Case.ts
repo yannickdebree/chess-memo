@@ -1,4 +1,4 @@
-import { Column, Row } from ".";
+import { Column, Row } from "..";
 
 export class Case {
     private isBlack: boolean;
@@ -13,6 +13,6 @@ export class Case {
     }
 
     toString() {
-        return `${this.column.getLetter()}${this.row.getIndex()}`
+        return `${this.column.getLetter()}${this.row.getIndex()}`;
     }
 }

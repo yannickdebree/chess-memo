@@ -24,8 +24,14 @@
       "@_domain": [
         "src/app/domain"
       ],
+      "@_pages": [
+        "src/app/pages"
+      ],
       "@_services": [
         "src/app/services"
+      ],
+      "@_utils": [
+        "src/app/utils"
       ]
     }
   },

@@ -13,7 +13,7 @@ export class CaseColorRecapComponent {
         @Inject(MAT_DIALOG_DATA)
         data: { tracking: Tracking }
     ) {
-        this.success = data.tracking.getData().filter(d => d.success).length;
-        this.fails = data.tracking.getData().filter(d => !d.success).length;
+        this.success = data.tracking.getData().filter(d => d.getSuccess()).length;
+        this.fails = data.tracking.getData().filter(d => !d.getSuccess()).length;
     }
 }
