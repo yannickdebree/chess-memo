@@ -42,19 +42,20 @@ export class CaseColorComponent implements OnInit {
     this.currentCase = this.cases[randomIndex];
   }
 
-  onSubmit(answer: boolean) {
+  onSubmit(userSaidCaseIsBlack: boolean) {
     this.matSnackBar.dismiss();
 
-    if (!!this.currentCase && this.chrono) {
-      const trackingData = new TrackingData(this.currentCase);
-      const isBlack = this.currentCase.getIsBlack();
-      if (isBlack !== answer) {
-        trackingData.setSuccess(false);
+    if (!!this.currentCase) {
+      const isCaseBlack = this.currentCase.getIsBlack();
+      const success = isCaseBlack === userSaidCaseIsBlack;
+      if (!success) {
         this.matSnackBar.open(
-          `${this.currentCase.toString()} est de couleur ${isBlack ? 'noire' : 'blanche'}.`, 'OK', { duration: 2000 }
+          `${this.currentCase.toString()} est de couleur ${isCaseBlack ? 'noire' : 'blanche'}.`, 'OK', { duration: 2000 }
         );
       }
-      this.tracking.registerData(trackingData);
+      if (this.chrono) {
+        this.tracking.registerData(new TrackingData(this.currentCase).setSuccess(success));
+      }
     }
 
     this.selectRandomCase();

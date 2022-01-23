@@ -1,11 +1,13 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
-    <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
-    <h1>Couleur de case</h1>
-    <span></span>
+  <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
+  <h1>Couleur de case</h1>
+  <span></span>
 </div>
-<h2>De quelle couleur est la case {{currentCase?.toString()}} ?</h2>
+<h2>De quelle couleur est la case {{ currentCase?.toString() }} ?</h2>
 <div fxLayout="column" fxLayoutGap="1rem">
-    <button mat-raised-button color="accent" (click)="onSubmit(false)">Blanche</button>
-    <button mat-raised-button color="basic" (click)="onSubmit(true)">Noire</button>
-    <div *ngIf="chrono">Temps: <b [chronometer]="chronometer" [chronoEvents]=true (onChronoEvent)="onChronoEvent($event)"></b></div>
+  <button mat-raised-button color="accent" (click)="onSubmit(false)">Blanche</button>
+  <button mat-raised-button color="basic" (click)="onSubmit(true)">Noire</button>
+  <div *ngIf="chrono">
+    Temps: <b [chronometer]="chronometer" [chronoEvents]="true" (onChronoEvent)="onChronoEvent($event)"></b>
+  </div>
 </div>

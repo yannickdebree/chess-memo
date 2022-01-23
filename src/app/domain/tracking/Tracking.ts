@@ -10,6 +10,7 @@ export class Tracking {
 
     setDate(date: Date) {
         this.date = date;
+        return this;
     }
 
     getData() {
@@ -18,5 +19,6 @@ export class Tracking {
 
     registerData(...trackingData: Array<TrackingData>) {
         this.data.push(...trackingData);
+        return this;
     }
 }

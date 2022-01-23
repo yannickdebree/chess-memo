@@ -13,5 +13,6 @@ export class TrackingData {
 
     setSuccess(success: boolean) {
         this.success = success;
+        return this;
     }
 }
