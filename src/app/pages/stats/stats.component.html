@@ -7,7 +7,7 @@
   <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
   <ul class="container">
     <li *ngFor="let stat of stats">
-      {{ stat.label }} - Succés: {{ stat.success }}, échecs: {{ stat.fails }}
+      {{ stat.label }}: {{ stat.success }} succès, {{ stat.fails }} échecs
     </li>
   </ul>
   <button mat-raised-button (click)="onDropStatistics()">Supprimer les statistiques</button>

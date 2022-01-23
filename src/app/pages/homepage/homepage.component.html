@@ -1,7 +1,23 @@
-<h1>Que souhaitez-vous faire ?</h1>
-<h2>Couleur de case</h2>
-<div fxLayout="column" fxLayoutGap="1rem">
-  <a mat-raised-button color="primary" routerLink="case-color" [queryParams]="{'chrono': true}">1 minute</a>
-  <a mat-raised-button color="primary" routerLink="case-color">Entrainement libre</a>
-  <a mat-raised-button color="accent" routerLink="stats" [queryParams]="{exercice: 'case-color'}">Voir mes statistiques</a>
+<div fxLayout="column" fxLayoutAlign="space-between" class="container">
+  <div>
+    <h1>Que souhaitez-vous faire ?</h1>
+    <h2>Couleur de case</h2>
+    <div fxLayout="column" fxLayoutGap="1rem">
+      <a mat-raised-button color="primary" routerLink="case-color" [queryParams]="{ chrono: true }">1 minute</a>
+      <a mat-raised-button color="primary" routerLink="case-color">Entrainement libre</a>
+      <a mat-raised-button color="accent" routerLink="stats" [queryParams]="{ exercice: 'case-color' }"
+        >Voir mes statistiques</a
+      >
+    </div>
+  </div>
+  <div fxLayout="row" fxLayoutAlign="center" class="footer">
+    <button
+      *ngFor="let language of languages"
+      mat-raised-button
+      [color]="language.active ? 'primary' : 'default'"
+      (click)="changeLanguage(language.letter)"
+    >
+      {{ language.letter }}
+    </button>
+  </div>
 </div>
