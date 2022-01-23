@@ -5,8 +5,10 @@
     <span></span>
   </div>
   <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
-  <div #canvasContainer class="canvas-container">
-    <canvas #canvas></canvas>
-  </div>
+  <ul class="container">
+    <li *ngFor="let stat of stats">
+      {{ stat.label }} - Succés: {{ stat.success }}, échecs: {{ stat.fails }}
+    </li>
+  </ul>
   <button mat-raised-button (click)="onDropStatistics()">Supprimer les statistiques</button>
 </div>

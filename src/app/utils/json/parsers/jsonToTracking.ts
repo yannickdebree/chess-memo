@@ -9,7 +9,7 @@ export function jsonToTracking(json: TrackingJSON) {
     tracking.setDate(new Date(date));
 
     const parsedData = data.map((trackingDataJSON) => {
-        const { case: { column: { letter }, row: { index } }, success } = trackingDataJSON;
+        const { _case: { column: { letter }, row: { index } }, success } = trackingDataJSON;
         const column = new Column(letter);
         const row = new Row(index);
         const _case = new Case(column, row);
