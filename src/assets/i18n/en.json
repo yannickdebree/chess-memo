@@ -1,0 +1,11 @@
+{
+    "global": {
+        "caseColor": "Case color"
+    },
+    "homepage": {
+        "mainQuestion": "What do you want to do ?",
+        "oneMinute": "1 minute",
+        "freeTraining": "Free training",
+        "seeMyStatistics": "See my statistics"
+    }
+}

@@ -1,21 +1,35 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { LanguageLetter } from '@_domain';
+import { ActiveLanguageRepositoryService } from '@_services';
 
-enum Language {
-  EN = 'EN',
-  FR = 'FR'
+interface LanguageConfig {
+  value: LanguageLetter;
+  active: boolean;
 }
 
+@UntilDestroy()
 @Component({
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class HomepageComponent {
-  languages = [Language.EN, Language.FR].map(l => ({ letter: l, active: l === Language.FR }))
+export class HomepageComponent implements OnInit {
+  languageConfigs = new Array<LanguageConfig>();
 
-  changeLanguage(lang: Language) {
-    this.languages.forEach(language => {
-      language.active = language.letter === lang;
+  constructor(
+    private activeLanguageRepositoryService: ActiveLanguageRepositoryService
+  ) { }
+
+  ngOnInit() {
+    this.activeLanguageRepositoryService.getActiveLanguageLetter$().pipe(untilDestroyed(this)).subscribe(activeLanguage => {
+      if (activeLanguage) {
+        this.languageConfigs = [LanguageLetter.EN, LanguageLetter.FR].map(letter => ({ value: letter, active: letter === activeLanguage }))
+      }
     })
+  }
+
+  changeLanguage(lang: LanguageLetter) {
+    this.activeLanguageRepositoryService.saveActiveLanguageLetter(lang);
   }
 }

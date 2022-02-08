@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatButtonModule } from '@angular/material/button';
+import { TranslateModule } from '@ngx-translate/core';
 import { HomepageRoutingModule } from './homepage-routing.module';
 import { HomepageComponent } from './homepage.component';
 
@@ -13,7 +14,7 @@ import { HomepageComponent } from './homepage.component';
     CommonModule,
     HomepageRoutingModule,
     FlexLayoutModule,
-    MatButtonModule
+    MatButtonModule, TranslateModule
   ]
 })
 export class HomepageModule { }
