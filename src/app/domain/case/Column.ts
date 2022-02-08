@@ -1,13 +1,13 @@
 export class Column {
-    private value = ['A', 'C', 'E', 'G'].includes(this.letter) ? 1 : -1;
+  private value = ['A', 'C', 'E', 'G'].includes(this.letter) ? 1 : -1;
 
-    constructor(private letter: string) { }
+  constructor(private letter: string) {}
 
-    getLetter() {
-        return this.letter;
-    }
+  getLetter() {
+    return this.letter;
+  }
 
-    getValue() {
-        return this.value;
-    }
+  getValue() {
+    return this.value;
+  }
 }

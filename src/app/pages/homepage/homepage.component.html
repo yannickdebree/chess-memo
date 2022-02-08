@@ -7,13 +7,9 @@
         'homepage.oneMinute' | translate
       }}</a>
       <a mat-raised-button color="primary" routerLink="case-color">{{ 'homepage.freeTraining' | translate }}</a>
-      <a
-        mat-raised-button
-        color="accent"
-        routerLink="stats"
-        [queryParams]="{ exercice: 'case-color' }"
-        >{{ 'homepage.seeMyStatistics' | translate }}</a
-      >
+      <a mat-raised-button color="accent" routerLink="stats" [queryParams]="{ exercice: 'case-color' }">{{
+        'homepage.seeMyStatistics' | translate
+      }}</a>
     </div>
   </div>
   <div fxLayout="row" fxLayoutAlign="center" class="footer">

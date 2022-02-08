@@ -1,18 +1,18 @@
-import { Case } from "..";
+import { Case } from '..';
 
 export class TrackingData {
-    constructor(private _case: Case, private success = true) { }
+  constructor(private _case: Case, private success = true) {}
 
-    getCase() {
-        return this._case;
-    }
+  getCase() {
+    return this._case;
+  }
 
-    getSuccess() {
-        return this.success;
-    }
+  getSuccess() {
+    return this.success;
+  }
 
-    setSuccess(success: boolean) {
-        this.success = success;
-        return this;
-    }
+  setSuccess(success: boolean) {
+    this.success = success;
+    return this;
+  }
 }

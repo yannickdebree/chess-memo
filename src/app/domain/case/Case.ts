@@ -1,18 +1,18 @@
-import { Column, Row } from "..";
+import { Column, Row } from '..';
 
 export class Case {
-    private isBlack: boolean;
+  private isBlack: boolean;
 
-    constructor(private column: Column, private row: Row) {
-        const value = column.getValue() + row.getValue();
-        this.isBlack = value === 2 || value === -2;
-    }
+  constructor(private column: Column, private row: Row) {
+    const value = column.getValue() + row.getValue();
+    this.isBlack = value === 2 || value === -2;
+  }
 
-    getIsBlack() {
-        return this.isBlack;
-    }
+  getIsBlack() {
+    return this.isBlack;
+  }
 
-    toString() {
-        return `${this.column.getLetter()}${this.row.getIndex()}`;
-    }
+  toString() {
+    return `${this.column.getLetter()}${this.row.getIndex()}`;
+  }
 }

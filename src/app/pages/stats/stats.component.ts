@@ -17,7 +17,7 @@ interface Stat {
   selector: 'app-stats',
   templateUrl: './stats.component.html',
   styleUrls: ['./stats.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatsComponent implements OnInit {
   exercice: string | undefined;
@@ -30,29 +30,35 @@ export class StatsComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private injector: Injector,
     private changeDetectorRef: ChangeDetectorRef
-  ) { }
+  ) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams.pipe(switchMap(({ exercice }) => {
-      switch (exercice) {
-        case "case-color":
-        default:
-          this.exercice = "Couleur de case";
-          this.trackingRepository = this.injector.get(CaseColorTrackingRepositoryService);
-      }
-      return this.trackingRepository.getTrackings$();
-    }), map(trackings => trackings.sort((a, b) => b.getDate().getTime() - a.getDate().getTime())), untilDestroyed(this)).subscribe((trackings) => {
-      this.stats = trackings.map(tracking => {
-        const trackingData = tracking.getData();
-        return {
-          label: dayjs(tracking.getDate()).format('DD/MM/YY'),
-          success: trackingData.filter(d => d.getSuccess()).length,
-          fails: trackingData.filter(d => !d.getSuccess()).length
-        }
-      });
+    this.activatedRoute.queryParams
+      .pipe(
+        switchMap(({ exercice }) => {
+          switch (exercice) {
+            case 'case-color':
+            default:
+              this.exercice = 'Couleur de case';
+              this.trackingRepository = this.injector.get(CaseColorTrackingRepositoryService);
+          }
+          return this.trackingRepository.getTrackings$();
+        }),
+        map((trackings) => trackings.sort((a, b) => b.getDate().getTime() - a.getDate().getTime())),
+        untilDestroyed(this)
+      )
+      .subscribe((trackings) => {
+        this.stats = trackings.map((tracking) => {
+          const trackingData = tracking.getData();
+          return {
+            label: dayjs(tracking.getDate()).format('DD/MM/YY'),
+            success: trackingData.filter((d) => d.getSuccess()).length,
+            fails: trackingData.filter((d) => !d.getSuccess()).length,
+          };
+        });
 
-      this.changeDetectorRef.markForCheck();
-    });
+        this.changeDetectorRef.markForCheck();
+      });
   }
 
   onNavigationBefore() {

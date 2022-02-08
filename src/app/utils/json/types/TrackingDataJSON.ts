@@ -1,6 +1,6 @@
-import { CaseJSON } from ".";
+import { CaseJSON } from '.';
 
 export interface TrackingDataJSON {
-    _case: CaseJSON;
-    success: boolean;
+  _case: CaseJSON;
+  success: boolean;
 }

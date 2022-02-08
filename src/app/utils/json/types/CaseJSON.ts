@@ -1,7 +1,7 @@
-import { ColumnJSON, RowJSON } from ".";
+import { ColumnJSON, RowJSON } from '.';
 
 export interface CaseJSON {
-    isBlack: boolean;
-    column: ColumnJSON;
-    row: RowJSON;
+  isBlack: boolean;
+  column: ColumnJSON;
+  row: RowJSON;
 }

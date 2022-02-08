@@ -1,6 +1,6 @@
-import { TrackingDataJSON } from ".";
+import { TrackingDataJSON } from '.';
 
 export interface TrackingJSON {
-    date: string;
-    data: Array<TrackingDataJSON>
+  date: string;
+  data: Array<TrackingDataJSON>;
 }

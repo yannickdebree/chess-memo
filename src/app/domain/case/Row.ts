@@ -1,13 +1,13 @@
 export class Row {
-    private value = [1, 3, 5, 7].includes(this.index) ? 1 : -1;
+  private value = [1, 3, 5, 7].includes(this.index) ? 1 : -1;
 
-    constructor(private index: number) { }
+  constructor(private index: number) {}
 
-    getIndex() {
-        return this.index;
-    }
+  getIndex() {
+    return this.index;
+  }
 
-    getValue() {
-        return this.value;
-    }
+  getValue() {
+    return this.value;
+  }
 }

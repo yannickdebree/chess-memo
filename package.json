@@ -5,6 +5,7 @@
     "ng": "ng",
     "build": "ng build",
     "deploy": "ng deploy",
+    "format": "prettier . --write --ignore-path dist",
     "lint": "ng lint",
     "start": "ng serve",
     "test": "ng test",

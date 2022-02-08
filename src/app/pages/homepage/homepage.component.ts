@@ -12,21 +12,25 @@ interface LanguageConfig {
 @Component({
   templateUrl: './homepage.component.html',
   styleUrls: ['./homepage.component.scss'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomepageComponent implements OnInit {
   languageConfigs = new Array<LanguageConfig>();
 
-  constructor(
-    private activeLanguageRepositoryService: ActiveLanguageRepositoryService
-  ) { }
+  constructor(private activeLanguageRepositoryService: ActiveLanguageRepositoryService) {}
 
   ngOnInit() {
-    this.activeLanguageRepositoryService.getActiveLanguageLetter$().pipe(untilDestroyed(this)).subscribe(activeLanguage => {
-      if (activeLanguage) {
-        this.languageConfigs = [LanguageLetter.EN, LanguageLetter.FR].map(letter => ({ value: letter, active: letter === activeLanguage }))
-      }
-    })
+    this.activeLanguageRepositoryService
+      .getActiveLanguageLetter$()
+      .pipe(untilDestroyed(this))
+      .subscribe((activeLanguage) => {
+        if (activeLanguage) {
+          this.languageConfigs = [LanguageLetter.EN, LanguageLetter.FR].map((letter) => ({
+            value: letter,
+            active: letter === activeLanguage,
+          }));
+        }
+      });
   }
 
   changeLanguage(lang: LanguageLetter) {

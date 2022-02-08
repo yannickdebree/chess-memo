@@ -1,1 +1,1 @@
-export * from './case-color.module'
+export * from './case-color.module';

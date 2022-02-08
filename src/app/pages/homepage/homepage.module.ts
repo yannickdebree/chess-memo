@@ -7,14 +7,7 @@ import { HomepageRoutingModule } from './homepage-routing.module';
 import { HomepageComponent } from './homepage.component';
 
 @NgModule({
-  declarations: [
-    HomepageComponent
-  ],
-  imports: [
-    CommonModule,
-    HomepageRoutingModule,
-    FlexLayoutModule,
-    MatButtonModule, TranslateModule
-  ]
+  declarations: [HomepageComponent],
+  imports: [CommonModule, HomepageRoutingModule, FlexLayoutModule, MatButtonModule, TranslateModule.forChild()],
 })
-export class HomepageModule { }
+export class HomepageModule {}

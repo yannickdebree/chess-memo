@@ -1,4 +1,4 @@
 export interface ColumnJSON {
-    letter: string;
-    value: number;
+  letter: string;
+  value: number;
 }

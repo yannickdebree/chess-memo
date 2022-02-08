@@ -1,4 +1,4 @@
 export interface RowJSON {
-    index: number;
-    value: number;
+  index: number;
+  value: number;
 }

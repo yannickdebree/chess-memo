@@ -12,7 +12,8 @@ import { CaseColorRecapComponent } from './components';
 @UntilDestroy()
 @Component({
   templateUrl: './case-color.component.html',
-  styleUrls: ['./case-color.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./case-color.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class CaseColorComponent implements OnInit {
   private board = new Board();
@@ -24,16 +25,23 @@ export class CaseColorComponent implements OnInit {
   chrono: boolean | undefined;
   chronometer = new Chronometer({
     limitSecond: this.limitSecond,
-    status: StatusChonometer.start
+    status: StatusChonometer.start,
   });
 
-  constructor(private router: Router, private matSnackBar: MatSnackBar, private activatedRoute: ActivatedRoute, private changeDetectorRef: ChangeDetectorRef, private matDialog: MatDialog, private caseColorTrackingRepositoryService: CaseColorTrackingRepositoryService) {
+  constructor(
+    private router: Router,
+    private matSnackBar: MatSnackBar,
+    private activatedRoute: ActivatedRoute,
+    private changeDetectorRef: ChangeDetectorRef,
+    private matDialog: MatDialog,
+    private caseColorTrackingRepositoryService: CaseColorTrackingRepositoryService
+  ) {
     this.selectRandomCase();
   }
 
   ngOnInit() {
     this.activatedRoute.queryParams.pipe(untilDestroyed(this)).subscribe(({ chrono }) => {
-      this.chrono = chrono === "true" ? true : false;
+      this.chrono = chrono === 'true' ? true : false;
     });
   }
 
@@ -50,7 +58,9 @@ export class CaseColorComponent implements OnInit {
       const success = isCaseBlack === userSaidCaseIsBlack;
       if (!success) {
         this.matSnackBar.open(
-          `${this.currentCase.toString()} est de couleur ${isCaseBlack ? 'noire' : 'blanche'}.`, 'OK', { duration: 2000 }
+          `${this.currentCase.toString()} est de couleur ${isCaseBlack ? 'noire' : 'blanche'}.`,
+          'OK',
+          { duration: 2000 }
         );
       }
       if (this.chrono) {
@@ -70,16 +80,20 @@ export class CaseColorComponent implements OnInit {
 
     if (chronometer.second === this.limitSecond && chronometer.status !== StatusChonometer.pause) {
       this.chronometer.pause();
-      this.caseColorTrackingRepositoryService.saveTracking(this.tracking)
+      this.caseColorTrackingRepositoryService.saveTracking(this.tracking);
       this.changeDetectorRef.markForCheck();
-      this.matDialog.open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } }).afterClosed().pipe(first()).subscribe(retry => {
-        if (retry) {
-          this.chronometer.restart();
-          this.tracking = new Tracking();
-        } else {
-          this.onNavigationBefore();
-        }
-      })
+      this.matDialog
+        .open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } })
+        .afterClosed()
+        .pipe(first())
+        .subscribe((retry) => {
+          if (retry) {
+            this.chronometer.restart();
+            this.tracking = new Tracking();
+          } else {
+            this.onNavigationBefore();
+          }
+        });
     }
   }
 }

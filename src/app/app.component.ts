@@ -9,26 +9,27 @@ import { ActiveLanguageRepositoryService } from './services/active-language-repo
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'], changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['./app.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AppComponent implements OnInit {
-  constructor(private activeLanguageRepositoryService: ActiveLanguageRepositoryService, private translateService: TranslateService) { }
+  constructor(
+    private activeLanguageRepositoryService: ActiveLanguageRepositoryService,
+    private translateService: TranslateService
+  ) {}
 
   ngOnInit() {
     const activeLanguage$ = this.activeLanguageRepositoryService.getActiveLanguageLetter$();
 
-    activeLanguage$.pipe(untilDestroyed(this)).subscribe(activeLanguage => {
+    activeLanguage$.pipe(untilDestroyed(this)).subscribe((activeLanguage) => {
       if (!!activeLanguage) {
         this.translateService.use(activeLanguage.toLocaleLowerCase());
       }
     });
 
-    activeLanguage$.pipe(
-      first(),
-      untilDestroyed(this)
-    ).subscribe(activeLanguage => {
+    activeLanguage$.pipe(first(), untilDestroyed(this)).subscribe((activeLanguage) => {
       if (!activeLanguage) {
-        this.activeLanguageRepositoryService.saveActiveLanguageLetter(LanguageLetter.FR)
+        this.activeLanguageRepositoryService.saveActiveLanguageLetter(LanguageLetter.FR);
       }
     });
   }

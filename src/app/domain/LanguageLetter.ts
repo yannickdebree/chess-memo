@@ -1,4 +1,4 @@
 export enum LanguageLetter {
-    FR = "FR",
-    EN = 'EN'
+  FR = 'FR',
+  EN = 'EN',
 }

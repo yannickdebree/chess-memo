@@ -4,7 +4,7 @@ import { LanguageLetter } from '@_domain';
 import { LocalStorageManager } from './LocalStorageManager';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ActiveLanguageRepositoryService implements LocalStorageManager {
   private activeLanguage?: LanguageLetter;

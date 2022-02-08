@@ -5,7 +5,7 @@ import { ReplaySubject } from 'rxjs';
 import { LocalStorageManager } from './LocalStorageManager';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class CaseColorTrackingRepositoryService implements TrackingRepository, LocalStorageManager {
   private trackings = new Array<Tracking>();
