@@ -1,13 +1,14 @@
 <div fxLayout="row" fxLayoutAlign="space-between">
   <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
-  <h1>Couleur de case</h1>
+  <h1>{{ 'global.caseColor' | translate }}</h1>
   <span></span>
 </div>
-<h2>De quelle couleur est la case {{ currentCase?.toString() }} ?</h2>
+<h2>{{ 'case-color.question' | translate: { case: currentCase?.toString() } }}</h2>
 <div fxLayout="column" fxLayoutGap="1rem">
-  <button mat-raised-button color="accent" (click)="onSubmit(false)">Blanche</button>
-  <button mat-raised-button color="basic" (click)="onSubmit(true)">Noire</button>
+  <button mat-raised-button color="accent" (click)="onSubmit(false)">{{ 'case-color.white' | translate }}</button>
+  <button mat-raised-button color="basic" (click)="onSubmit(true)">{{ 'case-color.black' | translate }}</button>
   <div *ngIf="chrono">
-    Temps: <b [chronometer]="chronometer" [chronoEvents]="true" (onChronoEvent)="onChronoEvent($event)"></b>
+    {{ 'case-color.time' | translate }}:
+    <b [chronometer]="chronometer" [chronoEvents]="true" (onChronoEvent)="onChronoEvent($event)"></b>
   </div>
 </div>

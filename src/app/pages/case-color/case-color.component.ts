@@ -3,10 +3,12 @@ import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { Board, Case, Tracking, TrackingData } from '@_domain';
 import { CaseColorTrackingRepositoryService } from '@_services';
 import { Chronometer, StatusChonometer } from 'ngx-chronometer';
 import { first } from 'rxjs/operators';
+import { environment } from 'src/environments/environment';
 import { CaseColorRecapComponent } from './components';
 
 @UntilDestroy()
@@ -18,11 +20,12 @@ import { CaseColorRecapComponent } from './components';
 export class CaseColorComponent implements OnInit {
   private board = new Board();
   private cases = this.board.getCases();
-  private limitSecond = 60;
+  // Setted at 3 seconds in dev mode to test stats more faster
+  private limitSecond = environment.production ? 60 : 3;
   private tracking = new Tracking();
 
-  currentCase: Case | undefined;
-  chrono: boolean | undefined;
+  currentCase?: Case;
+  chrono?: boolean;
   chronometer = new Chronometer({
     limitSecond: this.limitSecond,
     status: StatusChonometer.start,
@@ -34,7 +37,8 @@ export class CaseColorComponent implements OnInit {
     private activatedRoute: ActivatedRoute,
     private changeDetectorRef: ChangeDetectorRef,
     private matDialog: MatDialog,
-    private caseColorTrackingRepositoryService: CaseColorTrackingRepositoryService
+    private caseColorTrackingRepositoryService: CaseColorTrackingRepositoryService,
+    private translateService: TranslateService
   ) {
     this.selectRandomCase();
   }
@@ -57,11 +61,14 @@ export class CaseColorComponent implements OnInit {
       const isCaseBlack = this.currentCase.getIsBlack();
       const success = isCaseBlack === userSaidCaseIsBlack;
       if (!success) {
-        this.matSnackBar.open(
-          `${this.currentCase.toString()} est de couleur ${isCaseBlack ? 'noire' : 'blanche'}.`,
-          'OK',
-          { duration: 2000 }
-        );
+        this.translateService
+          .get(`case-color.${isCaseBlack ? 'black' : 'white'}Helper`, {
+            case: this.currentCase.toString(),
+          })
+          .pipe(first())
+          .subscribe((helper: string) => {
+            this.matSnackBar.open(helper, 'OK', { duration: 2000 });
+          });
       }
       if (this.chrono) {
         this.tracking.registerData(new TrackingData(this.currentCase).setSuccess(success));
@@ -82,6 +89,7 @@ export class CaseColorComponent implements OnInit {
       this.chronometer.pause();
       this.caseColorTrackingRepositoryService.saveTracking(this.tracking);
       this.changeDetectorRef.markForCheck();
+
       this.matDialog
         .open(CaseColorRecapComponent, { disableClose: true, data: { tracking: this.tracking } })
         .afterClosed()

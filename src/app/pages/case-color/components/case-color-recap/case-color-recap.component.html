@@ -1,9 +1,13 @@
-<h1>Score :</h1>
+<h1>{{ 'case-color.recap.score' | translate }} :</h1>
 
-<p>Succès : {{ success }}</p>
-<p>Echecs : {{ fails }}</p>
+<p>{{ 'case-color.recap.success' | translate }} : {{ success }}</p>
+<p>{{ 'case-color.recap.fails' | translate }} : {{ fails }}</p>
 
 <div fxLayout="row" fxLayoutGap="1rem">
-  <button mat-raised-button color="primary" [mat-dialog-close]="true">Réessayer</button>
-  <button mat-raised-button color="basic" [mat-dialog-close]="false">Retour à l'accueil</button>
+  <button mat-raised-button color="primary" [mat-dialog-close]="true">
+    {{ 'case-color.recap.retry' | translate }}
+  </button>
+  <button mat-raised-button color="basic" [mat-dialog-close]="false">
+    {{ 'case-color.recap.backToHome' | translate }}
+  </button>
 </div>

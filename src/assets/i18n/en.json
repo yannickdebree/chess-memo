@@ -6,6 +6,27 @@
     "mainQuestion": "What do you want to do ?",
     "oneMinute": "1 minute",
     "freeTraining": "Free training",
-    "seeMyStatistics": "See my statistics"
+    "seeMyStatistics": "See my stats"
+  },
+  "case-color": {
+    "question": "What is the color of the case {{case}} ?",
+    "white": "White",
+    "whiteHelper": "{{case}} has white color",
+    "black": "Black",
+    "blackHelper": "{{case}} has black color",
+    "time": "Time",
+    "recap": {
+      "score": "Score",
+      "success": "Succes",
+      "fails": "Fails",
+      "retry": "Retry",
+      "backToHome": "Back to Homepage"
+    }
+  },
+  "stats": {
+    "title": "Stats",
+    "success": "succes",
+    "fails": "fails",
+    "removeStats": "Remove stats"
   }
 }

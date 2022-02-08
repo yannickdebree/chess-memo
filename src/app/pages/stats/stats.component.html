@@ -1,12 +1,15 @@
 <div fxLayout="column" class="container">
   <div fxLayout="row" fxLayoutAlign="space-between">
     <mat-icon (click)="onNavigationBefore()">navigate_before</mat-icon>
-    <h1>Statistiques</h1>
+    <h1>{{ 'stats.title' | translate }}</h1>
     <span></span>
   </div>
   <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
   <ul class="container">
-    <li *ngFor="let stat of stats">{{ stat.label }}: {{ stat.success }} succès, {{ stat.fails }} échecs</li>
+    <li *ngFor="let stat of stats">
+      {{ stat.label }}: {{ stat.success }} {{ 'stats.success' | translate }}, {{ stat.fails }}
+      {{ 'stats.fails' | translate }}
+    </li>
   </ul>
-  <button mat-raised-button (click)="onDropStatistics()">Supprimer les statistiques</button>
+  <button mat-raised-button (click)="onDropStatistics()">{{ 'stats.removeStats' | translate }}</button>
 </div>

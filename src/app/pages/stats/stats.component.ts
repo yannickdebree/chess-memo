@@ -1,9 +1,11 @@
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, Injector, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UntilDestroy, untilDestroyed } from '@ngneat/until-destroy';
+import { TranslateService } from '@ngx-translate/core';
 import { TrackingRepository } from '@_domain';
 import { CaseColorTrackingRepositoryService } from '@_services';
 import * as dayjs from 'dayjs';
+import { combineLatest } from 'rxjs';
 import { map, switchMap } from 'rxjs/operators';
 
 interface Stat {
@@ -29,17 +31,18 @@ export class StatsComponent implements OnInit {
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private injector: Injector,
-    private changeDetectorRef: ChangeDetectorRef
+    private changeDetectorRef: ChangeDetectorRef,
+    private translateService: TranslateService
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.queryParams
+    combineLatest([this.activatedRoute.queryParams, this.translateService.get('global.caseColor')])
       .pipe(
-        switchMap(({ exercice }) => {
+        switchMap(([{ exercice }, caseColorExerciceName]) => {
           switch (exercice) {
             case 'case-color':
             default:
-              this.exercice = 'Couleur de case';
+              this.exercice = caseColorExerciceName;
               this.trackingRepository = this.injector.get(CaseColorTrackingRepositoryService);
           }
           return this.trackingRepository.getTrackings$();

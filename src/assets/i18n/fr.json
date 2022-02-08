@@ -7,5 +7,26 @@
     "oneMinute": "1 minute",
     "freeTraining": "Entrainement libre",
     "seeMyStatistics": "Voir mes statistiques"
+  },
+  "case-color": {
+    "question": "De quelle couleur est la case {{case}} ?",
+    "white": "Blanche",
+    "whiteHelper": "{{case}} est de couleur blanche",
+    "black": "Noire",
+    "blackHelper": "{{case}} est de couleur noire",
+    "time": "Temps",
+    "recap": {
+      "score": "Score",
+      "success": "Succès",
+      "fails": "Echecs",
+      "retry": "Réessayer",
+      "backToHome": "Retour à l'accueil"
+    }
+  },
+  "stats": {
+    "title": "Statistiques",
+    "success": "succès",
+    "fails": "échecs",
+    "removeStats": "Supprimer les statistiques"
   }
 }
