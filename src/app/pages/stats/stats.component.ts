@@ -22,7 +22,7 @@ interface Stat {
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StatsComponent implements OnInit {
-  exercice: string | undefined;
+  exerciceName?: string;
   stats = new Array<Stat>();
 
   private trackingRepository: TrackingRepository | undefined;
@@ -43,7 +43,7 @@ export class StatsComponent implements OnInit {
           switch (exerciceName) {
             case 'case-color':
             default:
-              this.exercice = caseColorExerciceName;
+              this.exerciceName = caseColorExerciceName;
               this.trackingRepository = this.injector.get(CaseColorTrackingRepositoryService);
           }
           return this.trackingRepository.getTrackings$();
@@ -71,9 +71,5 @@ export class StatsComponent implements OnInit {
 
   onDropStatistics() {
     this.trackingRepository?.dropTrackings();
-  }
-
-  onSelectStat(stat: Stat) {
-    console.log(stat);
   }
 }

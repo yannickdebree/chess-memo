@@ -4,9 +4,9 @@
     <h1>{{ 'stats.title' | translate }}</h1>
     <span></span>
   </div>
-  <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
+  <h2 *ngIf="exerciceName">Exercice : {{ exerciceName }}</h2>
   <mat-list class="list">
-    <mat-list-item *ngFor="let stat of stats" (click)="onSelectStat(stat)">
+    <mat-list-item *ngFor="let stat of stats">
       {{ stat.label }}: {{ stat.success }} {{ 'stats.success' | translate }}, {{ stat.fails }}
       {{ 'stats.fails' | translate }}
     </mat-list-item>
