@@ -7,6 +7,16 @@
   }
 }
 
+.mat-grid-tile {
+  border: 1px solid #7e7e7e;
+  &.value.negative{
+    color: #ff5e5e;
+  }
+  &.value.positive{
+    color: #34d134;
+  }
+}
+
 html,
 body {
   height: 100%;

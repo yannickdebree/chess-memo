@@ -10,6 +10,7 @@ import { NgxChronometerModule } from 'ngx-chronometer';
 import { CaseColorRoutingModule } from './case-color-routing.module';
 import { CaseColorComponent } from './case-color.component';
 import { CaseColorRecapComponent } from './components';
+import { MatGridListModule } from '@angular/material/grid-list';
 
 @NgModule({
   declarations: [CaseColorComponent, CaseColorRecapComponent],
@@ -23,6 +24,7 @@ import { CaseColorRecapComponent } from './components';
     NgxChronometerModule,
     MatDialogModule,
     TranslateModule.forChild(),
+    MatGridListModule
   ],
 })
 export class CaseColorModule {}

@@ -30,6 +30,7 @@ export class CaseColorComponent implements OnInit {
     limitSecond: this.limitSecond,
     status: StatusChonometer.start,
   });
+  helperDisplayed = false;
 
   constructor(
     private router: Router,

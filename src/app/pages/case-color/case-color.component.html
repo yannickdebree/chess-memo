@@ -12,3 +12,52 @@
     <b [chronometer]="chronometer" [chronoEvents]="true" (onChronoEvent)="onChronoEvent($event)"></b>
   </div>
 </div>
+<div fxLayout="column" fxLayoutGap="1rem" class="helper-zone">
+  <button mat-button (click)="helperDisplayed = !helperDisplayed">
+    {{ 'case-color.' + (helperDisplayed ? 'hideHelper' : 'showHelper') | translate }}
+  </button>
+  <div *ngIf="helperDisplayed" fxLayout="column" fxLayoutGap="1rem">
+    <mat-grid-list cols="9" rowHeight="1:1">
+      <mat-grid-tile>L</mat-grid-tile>
+      <mat-grid-tile>A</mat-grid-tile>
+      <mat-grid-tile>B</mat-grid-tile>
+      <mat-grid-tile>C</mat-grid-tile>
+      <mat-grid-tile>D</mat-grid-tile>
+      <mat-grid-tile>E</mat-grid-tile>
+      <mat-grid-tile>F</mat-grid-tile>
+      <mat-grid-tile>G</mat-grid-tile>
+      <mat-grid-tile>H</mat-grid-tile>
+      <mat-grid-tile>{{ 'case-color.value' | translate }}</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile>N</mat-grid-tile>
+      <mat-grid-tile>1</mat-grid-tile>
+      <mat-grid-tile>2</mat-grid-tile>
+      <mat-grid-tile>3</mat-grid-tile>
+      <mat-grid-tile>4</mat-grid-tile>
+      <mat-grid-tile>5</mat-grid-tile>
+      <mat-grid-tile>6</mat-grid-tile>
+      <mat-grid-tile>7</mat-grid-tile>
+      <mat-grid-tile>8</mat-grid-tile>
+      <mat-grid-tile>{{ 'case-color.value' | translate }}</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+      <mat-grid-tile class="value negative">-1</mat-grid-tile>
+      <mat-grid-tile class="value positive">+1</mat-grid-tile>
+    </mat-grid-list>
+    <div>
+      <i>{{ 'case-color.equationMeaning' | translate: { equation: 'L x N < 0' } }} <strong>{{ 'case-color.white' | translate | lowercase }}</strong>.</i><br />
+      <i>{{ 'case-color.equationMeaning' | translate: { equation: 'L x N > 0' } }} <strong>{{ 'case-color.black' | translate | lowercase }}</strong>.</i>
+    </div>
+  </div>
+</div>

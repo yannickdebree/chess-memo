@@ -15,6 +15,10 @@
     "black": "Black",
     "blackHelper": "{{case}} has black color",
     "time": "Time",
+    "showHelper": "Show mnemonic helper",
+    "hideHelper": "Hide mnemonic helper",
+    "value": "Value",
+    "equationMeaning": "{{equation}} means the case is ",
     "recap": {
       "score": "Score",
       "success": "Succes",

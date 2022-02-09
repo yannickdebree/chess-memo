@@ -15,6 +15,10 @@
     "black": "Noire",
     "blackHelper": "{{case}} est de couleur noire",
     "time": "Temps",
+    "showHelper": "Afficher le moyen mnémotechnique",
+    "hideHelper": "Masquer le moyen mnémotechnique",
+    "value": "Valeur",
+    "equationMeaning": "{{equation}} signifie que la case est ",
     "recap": {
       "score": "Score",
       "success": "Succès",
