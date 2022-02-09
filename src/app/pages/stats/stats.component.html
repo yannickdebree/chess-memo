@@ -5,11 +5,11 @@
     <span></span>
   </div>
   <h2 *ngIf="exercice">Exercice : {{ exercice }}</h2>
-  <ul class="container">
-    <li *ngFor="let stat of stats">
+  <mat-list class="list">
+    <mat-list-item *ngFor="let stat of stats" (click)="onSelectStat(stat)">
       {{ stat.label }}: {{ stat.success }} {{ 'stats.success' | translate }}, {{ stat.fails }}
       {{ 'stats.fails' | translate }}
-    </li>
-  </ul>
+    </mat-list-item>
+  </mat-list>
   <button mat-raised-button (click)="onDropStatistics()">{{ 'stats.removeStats' | translate }}</button>
 </div>

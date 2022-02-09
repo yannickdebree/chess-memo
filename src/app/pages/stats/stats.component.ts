@@ -38,8 +38,9 @@ export class StatsComponent implements OnInit {
   ngOnInit() {
     combineLatest([this.activatedRoute.queryParams, this.translateService.get('global.caseColor')])
       .pipe(
-        switchMap(([{ exercice }, caseColorExerciceName]) => {
-          switch (exercice) {
+        map(([{ exercice: exerciceName }, caseColorExerciceName]) => [exerciceName, caseColorExerciceName]),
+        switchMap(([exerciceName, caseColorExerciceName]: string[]) => {
+          switch (exerciceName) {
             case 'case-color':
             default:
               this.exercice = caseColorExerciceName;
@@ -70,5 +71,9 @@ export class StatsComponent implements OnInit {
 
   onDropStatistics() {
     this.trackingRepository?.dropTrackings();
+  }
+
+  onSelectStat(stat: Stat) {
+    console.log(stat);
   }
 }

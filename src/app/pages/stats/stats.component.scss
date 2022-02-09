@@ -1,4 +1,7 @@
 .container {
   height: 100%;
-  overflow-x: scroll;
+}
+
+.list{
+  overflow-x: auto;
 }
