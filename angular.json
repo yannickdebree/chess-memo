@@ -124,8 +124,9 @@
       "skipTests": true
     }
   },
-  "defaultProject": "chess-memo",
   "cli": {
-    "defaultCollection": "@angular-eslint/schematics"
+    "schematicCollections": [
+      "@angular-eslint/schematics"
+    ]
   }
 }
